@@ -10,7 +10,6 @@ import (
 	"unsafe"
 
 	"github.com/go-ole/go-ole"
-	"github.com/saltosystems/winrt-go/windows/storage/streams"
 )
 
 const SignatureSystemMediaTransportControlsDisplayUpdater string = "rc(Windows.Media.SystemMediaTransportControlsDisplayUpdater;{8abbc53e-fa55-4ecf-ad8e-c984e5dd1550})"
@@ -45,20 +44,6 @@ func (impl *SystemMediaTransportControlsDisplayUpdater) SetAppMediaId(value stri
 	defer itf.Release()
 	v := (*iSystemMediaTransportControlsDisplayUpdater)(unsafe.Pointer(itf))
 	return v.SetAppMediaId(value)
-}
-
-func (impl *SystemMediaTransportControlsDisplayUpdater) GetThumbnail() (*streams.RandomAccessStreamReference, error) {
-	itf := impl.MustQueryInterface(ole.NewGUID(GUIDiSystemMediaTransportControlsDisplayUpdater))
-	defer itf.Release()
-	v := (*iSystemMediaTransportControlsDisplayUpdater)(unsafe.Pointer(itf))
-	return v.GetThumbnail()
-}
-
-func (impl *SystemMediaTransportControlsDisplayUpdater) SetThumbnail(value *streams.RandomAccessStreamReference) error {
-	itf := impl.MustQueryInterface(ole.NewGUID(GUIDiSystemMediaTransportControlsDisplayUpdater))
-	defer itf.Release()
-	v := (*iSystemMediaTransportControlsDisplayUpdater)(unsafe.Pointer(itf))
-	return v.SetThumbnail(value)
 }
 
 func (impl *SystemMediaTransportControlsDisplayUpdater) GetMusicProperties() (*MusicDisplayProperties, error) {
@@ -110,12 +95,9 @@ type iSystemMediaTransportControlsDisplayUpdaterVtbl struct {
 	SetType            uintptr
 	GetAppMediaId      uintptr
 	SetAppMediaId      uintptr
-	GetThumbnail       uintptr
-	SetThumbnail       uintptr
 	GetMusicProperties uintptr
 	GetVideoProperties uintptr
 	GetImageProperties uintptr
-	CopyFromFileAsync  uintptr
 	ClearAll           uintptr
 	Update             uintptr
 }
@@ -179,35 +161,6 @@ func (v *iSystemMediaTransportControlsDisplayUpdater) SetAppMediaId(value string
 		v.VTable().SetAppMediaId,
 		uintptr(unsafe.Pointer(v)), // this
 		uintptr(valueHStr),         // in string
-	)
-
-	if hr != 0 {
-		return ole.NewError(hr)
-	}
-
-	return nil
-}
-
-func (v *iSystemMediaTransportControlsDisplayUpdater) GetThumbnail() (*streams.RandomAccessStreamReference, error) {
-	var out *streams.RandomAccessStreamReference
-	hr, _, _ := syscall.SyscallN(
-		v.VTable().GetThumbnail,
-		uintptr(unsafe.Pointer(v)),    // this
-		uintptr(unsafe.Pointer(&out)), // out streams.RandomAccessStreamReference
-	)
-
-	if hr != 0 {
-		return nil, ole.NewError(hr)
-	}
-
-	return out, nil
-}
-
-func (v *iSystemMediaTransportControlsDisplayUpdater) SetThumbnail(value *streams.RandomAccessStreamReference) error {
-	hr, _, _ := syscall.SyscallN(
-		v.VTable().SetThumbnail,
-		uintptr(unsafe.Pointer(v)),     // this
-		uintptr(unsafe.Pointer(value)), // in streams.RandomAccessStreamReference
 	)
 
 	if hr != 0 {
