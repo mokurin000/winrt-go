@@ -1,6 +1,6 @@
 FROM saltosystems/go-builder:2471083
 
-ENV PKGPATH github.com/saltosystems/winrt-go
+ENV PKGPATH github.com/waylyrics/winrt-go
 
 # include workspace .gitconfig in global .gitconfig
 RUN git config --global include.path "${GOPATH}/src/${PKGPATH}/.gitconfig"

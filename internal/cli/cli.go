@@ -7,7 +7,7 @@ import (
 	"github.com/go-kit/log"
 	"github.com/go-kit/log/level"
 
-	"github.com/saltosystems/winrt-go/internal/codegen"
+	"github.com/waylyrics/winrt-go/internal/codegen"
 )
 
 const methodFilterUsage = `The filter to use when generating the methods. This option can be set several times, 

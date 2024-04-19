@@ -5,7 +5,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/saltosystems/winrt-go/internal/winmd"
+	"github.com/waylyrics/winrt-go/internal/winmd"
 )
 
 type genDataFile struct {
@@ -130,7 +130,7 @@ func (i genImport) ToGoImport() string {
 	}
 
 	folder := typeToFolder(i.Namespace, i.Name)
-	return "github.com/saltosystems/winrt-go/" + folder
+	return "github.com/waylyrics/winrt-go/" + folder
 }
 
 // some of the variables are not public to avoid using them

@@ -1,4 +1,4 @@
-PACKAGE     =  github.com/saltosystems/winrt-go
+PACKAGE     =  github.com/waylyrics/winrt-go
 PKG         ?= ./...
 APP         ?= winrt-go-gen
 BUILD_TAGS  ?= 
@@ -26,8 +26,8 @@ clean: $(clean_targets)
 .PHONY: gen-files
 gen-files:
 	rm -rf $(CURDIR)/windows
-	go generate github.com/saltosystems/winrt-go/...
+	go generate github.com/waylyrics/winrt-go/...
 
 .PHONY: go-test
 go-test:
-	go test github.com/saltosystems/winrt-go/...
+	go test github.com/waylyrics/winrt-go/...

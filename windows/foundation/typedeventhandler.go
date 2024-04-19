@@ -11,8 +11,8 @@ import (
 	"unsafe"
 
 	"github.com/go-ole/go-ole"
-	"github.com/saltosystems/winrt-go/internal/delegate"
-	"github.com/saltosystems/winrt-go/internal/kernel32"
+	"github.com/waylyrics/winrt-go/internal/delegate"
+	"github.com/waylyrics/winrt-go/internal/kernel32"
 )
 
 const GUIDTypedEventHandler string = "9de1c534-6ae1-11e0-84e1-18a905bcc53f"
